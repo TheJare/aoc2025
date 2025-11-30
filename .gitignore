@@ -1,0 +1,6 @@
+.vscode/
+*.txt
+env.cmd
+out/
+output*/
+output*.gif
