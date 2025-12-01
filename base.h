@@ -61,6 +61,12 @@ public:
 
     void clear() { std::fill(m_data.begin(), m_data.end(), 0); }
 
+    void fade(int n) {
+        for (auto&& v: m_data) {
+            v = static_cast<uint8_t>(std::max(0, v - n));
+        }
+    }
+
     void rect(int x0, int y0, int x1, int y1, uint8_t r, uint8_t g, uint8_t b) {
         if (x0 > x1) { std::swap(x0, x1); }
         if (y0 > y1) { std::swap(y0, y1); }
@@ -95,6 +101,7 @@ public:
     int height() const { return m_height; }
     int rand_x() const { return rand() % m_width; }
     int rand_y() const { return rand() % m_height; }
+    int frame() const { return m_frame; }
 
 private:
     int m_frame;
