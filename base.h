@@ -14,6 +14,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
+#include <regex>
 
 static std::vector<std::string> split_string_by_newline(const std::string_view str) {
     // This is not compatible with clang 21 on Linux, but it works on clang 21 Windows?
