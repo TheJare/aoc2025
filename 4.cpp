@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
                 lines.end());
 
     ImageStream img(format("output_{:0>2}/frame", filesystem::path(argv[0]).stem().string()),
-                    lines.size()*2, lines[0].size()*2);
+                    lines[0].size()*2, lines.size()*2);
 
     int v1 = 0;
 
