@@ -67,6 +67,15 @@ public:
             v = static_cast<uint8_t>(std::max(0, v - n));
         }
     }
+    void fade(int n, int targetv) {
+        for (auto&& v: m_data) {
+            if (v >= targetv) {
+                v = static_cast<uint8_t>(std::max(targetv, v - n));
+            } else {
+                v = static_cast<uint8_t>(std::max(0, v - n));
+            }
+        }
+    }
 
     void rect(int x0, int y0, int x1, int y1, uint8_t r, uint8_t g, uint8_t b) {
         if (x0 > x1) { std::swap(x0, x1); }
