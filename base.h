@@ -55,6 +55,7 @@ public:
     void write_frame() {
         std::ofstream frame_file(std::format("{}{:04d}.ppm", m_filename_path.string(), m_frame),
                                  std::ios::binary);
+        std::cout << std::format("{}{:04d}.ppm", m_filename_path.string(), m_frame) << std::endl;
         frame_file << std::format("P6\n{} {}\n255\n", m_width, m_height);
         frame_file.write(reinterpret_cast<const char*>(m_data.data()), m_data.size());
         m_frame++;
@@ -84,6 +85,22 @@ public:
             for (int x = x0; x < x1; x++) {
                 set_pixel(x, y, r, g, b);
             }
+        }
+    }
+
+    void scroll_left(int d) {
+        for (int y = 0; y < m_height; y++) {
+            auto l = m_data.begin() + y * m_width * 3;
+            for (int i = 0; i < (m_width-d)*3; i++) {
+                l[i] = l[i + d*3];
+            }
+        }
+    }
+
+    void scroll_up(int d) {
+        for (int y = 0; y < m_height-d; y++) {
+            auto l = &m_data[y * m_width * 3];
+            memcpy(l, l + d * m_width * 3, d * m_width * 3);
         }
     }
 
