@@ -55,7 +55,6 @@ public:
     void write_frame() {
         std::ofstream frame_file(std::format("{}{:04d}.ppm", m_filename_path.string(), m_frame),
                                  std::ios::binary);
-        std::cout << std::format("{}{:04d}.ppm", m_filename_path.string(), m_frame) << std::endl;
         frame_file << std::format("P6\n{} {}\n255\n", m_width, m_height);
         frame_file.write(reinterpret_cast<const char*>(m_data.data()), m_data.size());
         m_frame++;
